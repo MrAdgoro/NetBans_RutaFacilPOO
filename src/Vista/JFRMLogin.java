@@ -9,30 +9,28 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import Clases.Seguridad;
 
 /**
  *
  * @author HP
  */
 public class JFRMLogin extends javax.swing.JFrame {
-    private static Scanner sc;
-    private static int intentos;
-    private static String user,contra;
-
+    Seguridad objSeguridad; 
+    
     /**
      * Creates new form JFRMLogin
      */
     public JFRMLogin() {
         initComponents();
-        setLocationRelativeTo(null);// centrar pantalla
+        objSeguridad = new Seguridad();
         rootPane.setDefaultButton(btnIngresar);
-    }
-
-    public static void setIntentos(int intentos) {
-        JFRMLogin.intentos = intentos;
     }
 
     /**
@@ -48,7 +46,7 @@ public class JFRMLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        txtContraseña = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
         lblUsuario = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
@@ -78,7 +76,7 @@ public class JFRMLogin extends javax.swing.JFrame {
             }
         });
 
-        txtContraseña.setToolTipText("Ingrese su Contraseña");
+        txtPassword.setToolTipText("Ingrese su Contraseña");
 
         txtUsuario.setToolTipText("Ingrese su Usuario");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +107,7 @@ public class JFRMLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,7 +119,7 @@ public class JFRMLogin extends javax.swing.JFrame {
                     .addComponent(lblUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblContraseña))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -140,49 +138,21 @@ public class JFRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        FileReader fr=null;
-        try {
-            // TODO add your handling code here:
-            int nLineas=0;
-            int i=0;
-            String[] usuarios = null;
-            String linea;
-            
-            
-            sc = new Scanner (new File("C:\\usuarios.txt"));
-                    File f = new File("C:/usuarios.txt");
-            fr = new FileReader(f);
-            BufferedReader br = new BufferedReader(fr);
-            
-      
-            try {
-                while((linea=br.readLine())!=null){
-                    
-                    nLineas++;
-                }   } catch (IOException ex) {
-                Logger.getLogger(JFRMLogin.class.getName()).log(Level.SEVERE, null, ex);
+        String strUsuario = txtUsuario.getText();
+        String strClave = new String(txtPassword.getPassword());
+        
+        if(!objSeguridad.validarUsuario(strUsuario, strClave)){
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos (" + String.valueOf(objSeguridad.getIntentos()) + "/3)" , "Acceso al sistema",JOptionPane.INFORMATION_MESSAGE);
+            if(objSeguridad.getIntentos()>2){
+                JOptionPane.showMessageDialog(null, "Numero de intentos maximo" , "Acceso al sistema",JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
             }
-            usuarios=new String[nLineas];//tamaño de arreglo
-            while(sc.hasNextLine()){
-                usuarios[i++]=sc.nextLine();//almacenando cada linea en una posicion del arreglo
-            }
-            
-            intentos++;
-            user= txtUsuario.getText();
-            contra= txtContraseña.getText();
-            
-            Seguridad s = new Seguridad();
-            s.validarUsuario(usuarios, user, contra, intentos);
-            
-                    } catch (FileNotFoundException ex) {
-            Logger.getLogger(JFRMLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fr.close();
-            } catch (IOException ex) {
-                Logger.getLogger(JFRMLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            return;
         }
+        
+        RegistroBuses objRegistroBuses = new RegistroBuses();
+        this.setVisible(false);
+        objRegistroBuses.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -231,7 +201,7 @@ public class JFRMLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblTituloLogin;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
