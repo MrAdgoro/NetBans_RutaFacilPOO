@@ -71,7 +71,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtUsuario" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="txtContraseña" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="txtPassword" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
@@ -87,7 +87,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtContraseña" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblContraseña" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -119,7 +119,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txtContrase&#xf1;a">
+        <Component class="javax.swing.JPasswordField" name="txtPassword">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Ingrese su Contrase&#xf1;a"/>
           </Properties>
