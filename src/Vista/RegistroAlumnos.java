@@ -44,6 +44,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         spnRutaAsignada = new javax.swing.JComboBox<>();
         btnAgregarAlumno = new javax.swing.JButton();
         btnBorrarAlumno = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -124,6 +125,14 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         });
         getContentPane().add(btnBorrarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,6 +173,14 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBorrarAlumnoActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+    
+        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
+        this.setVisible(false);
+        objMenuPrincipal.setVisible(true);
+        
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     public void refrescarTabla(){
         while(modelo.getRowCount()>0){
             modelo.removeRow(0);
@@ -195,6 +212,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarAlumno;
     private javax.swing.JButton btnBorrarAlumno;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

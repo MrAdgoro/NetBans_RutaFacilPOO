@@ -55,8 +55,8 @@ public class JFRMLogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloLogin.setFont(new java.awt.Font("Rockwell Condensed", 2, 24)); // NOI18N
-        lblTituloLogin.setText("BUSES UNIS");
-        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+        lblTituloLogin.setText("RutaFacil");
+        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 80, -1));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
 
@@ -150,9 +150,9 @@ public class JFRMLogin extends javax.swing.JFrame {
             return;
         }
         
-        RegistroBuses objRegistroBuses = new RegistroBuses();
+        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
         this.setVisible(false);
-        objRegistroBuses.setVisible(true);
+        objMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
