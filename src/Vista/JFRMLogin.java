@@ -150,9 +150,9 @@ public class JFRMLogin extends javax.swing.JFrame {
             return;
         }
         
-        RegistroBuses objRegistroBuses = new RegistroBuses();
+        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
         this.setVisible(false);
-        objRegistroBuses.setVisible(true);
+        objMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
