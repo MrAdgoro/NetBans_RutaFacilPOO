@@ -38,6 +38,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnRegistroAlumnos1 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnGestionMantenimiento = new javax.swing.JButton();
+        btnGotoCorreos = new javax.swing.JButton();
+        btnSimuladorCostos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,7 +54,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroBusesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroBuses, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, -1));
+        getContentPane().add(btnRegistroBuses, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
 
         btnRegistroAlumnos1.setText("Registro de Alumnos");
         btnRegistroAlumnos1.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +62,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroAlumnos1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroAlumnos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        getContentPane().add(btnRegistroAlumnos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 160, -1));
 
         btnLogout.setText("Log Out");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +78,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnGestionMantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 140, -1));
+        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
+
+        btnGotoCorreos.setText("Envio de Notificaciones");
+        btnGotoCorreos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGotoCorreosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGotoCorreos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, -1));
+
+        btnSimuladorCostos.setText("Simulador de Costos");
+        btnSimuladorCostos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimuladorCostosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -102,6 +120,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         objGestionMantenimiento.setVisible(true);
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
+
+    private void btnGotoCorreosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGotoCorreosActionPerformed
+EnvioCorreo objEnvioCorreo=new EnvioCorreo();
+this.setVisible(false);
+objEnvioCorreo.setVisible(true);
+    }//GEN-LAST:event_btnGotoCorreosActionPerformed
+
+    private void btnSimuladorCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimuladorCostosActionPerformed
+FRMSimuladorcostos objFRMSimuladorcostos=new FRMSimuladorcostos();
+this.setVisible(false);
+objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_btnSimuladorCostosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +170,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestionMantenimiento;
+    private javax.swing.JButton btnGotoCorreos;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegistroAlumnos1;
     private javax.swing.JButton btnRegistroBuses;
+    private javax.swing.JButton btnSimuladorCostos;
     private javax.swing.JLabel lblTituloLogin;
     // End of variables declaration//GEN-END:variables
 }
