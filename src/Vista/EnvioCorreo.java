@@ -37,6 +37,7 @@ public class EnvioCorreo extends javax.swing.JFrame {
     /**
      * Creates new form EnvioCorreo
      */
+    
     public EnvioCorreo() {
         initComponents();
         mProperties=new Properties();
