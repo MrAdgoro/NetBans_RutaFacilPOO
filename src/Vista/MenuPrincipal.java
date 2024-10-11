@@ -38,6 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnRegistroAlumnos1 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnGestionMantenimiento = new javax.swing.JButton();
+        btnEnvioCorreos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,11 +79,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 140, -1));
 
+        btnEnvioCorreos.setText("Envio de Correos");
+        btnEnvioCorreos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnvioCorreosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnvioCorreos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 140, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
+        JFRMLogin objJFRMLogin = new JFRMLogin();
+        this.setVisible(false);
+        objJFRMLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnRegistroAlumnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAlumnos1ActionPerformed
@@ -102,6 +113,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         objGestionMantenimiento.setVisible(true);
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
+
+    private void btnEnvioCorreosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvioCorreosActionPerformed
+        EnvioCorreo objEnvioCorreo = new EnvioCorreo();
+        this.setVisible(false);
+        objEnvioCorreo.setVisible(true);
+    }//GEN-LAST:event_btnEnvioCorreosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +156,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnvioCorreos;
     private javax.swing.JButton btnGestionMantenimiento;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegistroAlumnos1;

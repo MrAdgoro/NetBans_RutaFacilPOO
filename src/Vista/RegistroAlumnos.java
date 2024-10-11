@@ -15,6 +15,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     ArrayList<Alumno> listaAlumnos=new ArrayList<Alumno>();
     public RegistroAlumnos() {
         initComponents();
+       
         this.setTitle("REGISTRO DE ALUMNOS");
         this.setSize(700, 700);
         this.setLocationRelativeTo(null);
@@ -107,6 +108,11 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         getContentPane().add(txtTelefonoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 200, -1));
 
         spnRutaAsignada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        spnRutaAsignada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spnRutaAsignadaActionPerformed(evt);
+            }
+        });
         getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 120, -1));
 
         btnAgregarAlumno.setText("Agregar");
@@ -180,6 +186,10 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         objMenuPrincipal.setVisible(true);
         
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void spnRutaAsignadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spnRutaAsignadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spnRutaAsignadaActionPerformed
 
     public void refrescarTabla(){
         while(modelo.getRowCount()>0){
