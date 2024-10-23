@@ -8,6 +8,7 @@ import Clases.Alumno;
 import Vista.GestionMantenimiento;
 import Vista.RegistroAlumnos;
 import Vista.RegistroBuses;
+import javax.swing.JOptionPane;
 
 
 
@@ -101,6 +102,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+         int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas cerrar sesión?", "Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION);
+    
+   
+    if (confirm == JOptionPane.YES_OPTION) {
+        JOptionPane.showMessageDialog(null, "Sesión cerrada exitosamente.");
+        this.setVisible(false); // Ocultar la ventana actual (MenuPrincipal)
+        JFRMLogin login = new JFRMLogin(); // Crear una nueva instancia de la ventana de login
+        login.setVisible(true); // Mostrar la ventana de login
+    }
+     
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnRegistroAlumnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAlumnos1ActionPerformed
