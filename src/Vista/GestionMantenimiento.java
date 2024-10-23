@@ -66,6 +66,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         tblGestionMantenimiento = new javax.swing.JTable();
         jcbxTipoMantenimiento = new javax.swing.JComboBox<>();
         txtFechaProgramada = new javax.swing.JTextField();
+        btnRegresar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,6 +198,14 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         });
         getContentPane().add(txtFechaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 130, -1));
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
  
@@ -287,6 +296,12 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaProgramadaActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
+        this.setVisible(false);
+        objMenuPrincipal.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
         private void agregarMantenimiento() {
         try {
             String id = txtId.getText();
@@ -345,6 +360,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
