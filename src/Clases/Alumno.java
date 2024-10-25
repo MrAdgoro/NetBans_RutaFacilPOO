@@ -8,6 +8,7 @@ public class Alumno {
     String id;
     String direccion;
     String telefono;
+    String correo;
     int rutaAsignada;
 
     public Alumno() {
@@ -18,6 +19,7 @@ public class Alumno {
         this.id = id;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.correo = correo;
         this.rutaAsignada = rutaAsignada;
     }
 
@@ -53,6 +55,14 @@ public class Alumno {
         this.telefono = telefono;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
     public int getRutaAsignada() {
         return rutaAsignada;
     }
@@ -63,7 +73,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "nombre=" + nombre + ", id=" + id + ", direccion=" + direccion + ", telefono=" + telefono + ", rutaAsignada=" + rutaAsignada + '}';
+        return "Alumno{" + "nombre=" + nombre + ", id=" + id + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + ", rutaAsignada=" + rutaAsignada + '}';
     }
 
     void setRutaAsignada(JComboBox<String> spnRutaAsignada) {

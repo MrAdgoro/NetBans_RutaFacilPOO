@@ -9,6 +9,7 @@ import Vista.GestionMantenimiento;
 import Vista.RegistroAlumnos;
 import Vista.RegistroBuses;
 import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
 
 
 
@@ -36,11 +37,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         lblTituloLogin = new javax.swing.JLabel();
         btnRegistroBuses = new javax.swing.JButton();
-        btnRegistroAlumnos1 = new javax.swing.JButton();
+        btnRegistroAlumnos = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnGestionMantenimiento = new javax.swing.JButton();
-        btnGotoCorreos = new javax.swing.JButton();
         btnSimuladorCostos = new javax.swing.JButton();
+        btnRegistroPilotos = new javax.swing.JButton();
+        btnEnvioCorreo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,13 +59,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnRegistroBuses, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
 
-        btnRegistroAlumnos1.setText("Registro de Alumnos");
-        btnRegistroAlumnos1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroAlumnos.setText("Registro de Alumnos");
+        btnRegistroAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroAlumnos1ActionPerformed(evt);
+                btnRegistroAlumnosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroAlumnos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 160, -1));
+        getContentPane().add(btnRegistroAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 160, -1));
 
         btnLogout.setText("Log Out");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -81,14 +83,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
 
-        btnGotoCorreos.setText("Envio de Notificaciones");
-        btnGotoCorreos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGotoCorreosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGotoCorreos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, -1));
-
         btnSimuladorCostos.setText("Simulador de Costos");
         btnSimuladorCostos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +91,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, -1));
 
+        btnRegistroPilotos.setText("Registro de Pilotos");
+        btnRegistroPilotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroPilotosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistroPilotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 160, -1));
+
+        btnEnvioCorreo.setText("Envio Notificaciones");
+        btnEnvioCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnvioCorreoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,11 +114,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JFRMLogin objJFRMLogin = new JFRMLogin();
         this.setVisible(false);
         objJFRMLogin.setVisible(true);
-         int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas cerrar sesión?", "Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION);
+         int confirm = JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½s seguro de que deseas cerrar sesiï¿½n?", "Confirmar cierre de sesiï¿½n", JOptionPane.YES_NO_OPTION);
     
    
     if (confirm == JOptionPane.YES_OPTION) {
-        JOptionPane.showMessageDialog(null, "Sesión cerrada exitosamente.");
+        JOptionPane.showMessageDialog(null, "Sesiï¿½n cerrada exitosamente.");
         this.setVisible(false); // Ocultar la ventana actual (MenuPrincipal)
         JFRMLogin login = new JFRMLogin(); // Crear una nueva instancia de la ventana de login
         login.setVisible(true); // Mostrar la ventana de login
@@ -116,11 +126,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
      
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnRegistroAlumnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAlumnos1ActionPerformed
+    private void btnRegistroAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAlumnosActionPerformed
         RegistroAlumnos objRegistroAlumnos = new RegistroAlumnos();
         this.setVisible(false);
         objRegistroAlumnos.setVisible(true);
-    }//GEN-LAST:event_btnRegistroAlumnos1ActionPerformed
+    }//GEN-LAST:event_btnRegistroAlumnosActionPerformed
 
     private void btnRegistroBusesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroBusesActionPerformed
         RegistroBuses objRegistroBuses = new RegistroBuses();
@@ -134,17 +144,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         objGestionMantenimiento.setVisible(true);
     }//GEN-LAST:event_btnGestionMantenimientoActionPerformed
 
-    private void btnGotoCorreosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGotoCorreosActionPerformed
-EnvioCorreo objEnvioCorreo=new EnvioCorreo();
-this.setVisible(false);
-objEnvioCorreo.setVisible(true);
-    }//GEN-LAST:event_btnGotoCorreosActionPerformed
-
     private void btnSimuladorCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimuladorCostosActionPerformed
 FRMSimuladorcostos objFRMSimuladorcostos=new FRMSimuladorcostos();
 this.setVisible(false);
 objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btnSimuladorCostosActionPerformed
+
+    private void btnRegistroPilotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroPilotosActionPerformed
+        RegistroPilotos objRegistroPilotos=new RegistroPilotos();
+        this.setVisible(false);
+        objRegistroPilotos.setVisible(true);
+
+    }//GEN-LAST:event_btnRegistroPilotosActionPerformed
+
+    private void btnEnvioCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnvioCorreoActionPerformed
+        EnvioCorreo objEnvioCorreo=new EnvioCorreo();
+        this.setVisible(false);
+        objEnvioCorreo.setVisible(true);
+    }//GEN-LAST:event_btnEnvioCorreoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,11 +199,12 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnvioCorreo;
     private javax.swing.JButton btnGestionMantenimiento;
-    private javax.swing.JButton btnGotoCorreos;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnRegistroAlumnos1;
+    private javax.swing.JButton btnRegistroAlumnos;
     private javax.swing.JButton btnRegistroBuses;
+    private javax.swing.JButton btnRegistroPilotos;
     private javax.swing.JButton btnSimuladorCostos;
     private javax.swing.JLabel lblTituloLogin;
     // End of variables declaration//GEN-END:variables

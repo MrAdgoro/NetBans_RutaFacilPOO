@@ -23,6 +23,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         modelo.addColumn("ID");
         modelo.addColumn("DIRECCION");
         modelo.addColumn("TELEFONO");
+        modelo.addColumn("CORREO");
         modelo.addColumn("RUTA");
         refrescarTabla();
     }
@@ -46,6 +47,8 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         btnAgregarAlumno = new javax.swing.JButton();
         btnBorrarAlumno = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtCorreoAlumno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,7 +66,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblRegistroAlumnos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 217, -1, 200));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 217, 570, 200));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nombre");
@@ -83,7 +86,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Ruta Asignada");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         txtNombreAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +116,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 spnRutaAsignadaActionPerformed(evt);
             }
         });
-        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 120, -1));
+        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 120, -1));
 
         btnAgregarAlumno.setText("Agregar");
         btnAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +142,17 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         });
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 470, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Correo");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        txtCorreoAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoAlumnoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtCorreoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 200, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,6 +176,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         x.setId(txtIDAlumno.getText());
         x.setDireccion(txtDireccionAlumno.getText());
         x.setTelefono(txtTelefonoAlumno.getText());
+        x.setCorreo(txtCorreoAlumno.getText());
         x.setRutaAsignada(Integer.parseInt(spnRutaAsignada.getSelectedItem().toString()));
         listaAlumnos.add(x);
         refrescarTabla();
@@ -175,6 +190,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         txtIDAlumno.setText("");
         txtDireccionAlumno.setText("");
         txtTelefonoAlumno.setText("");
+        txtCorreoAlumno.setText("");
         spnRutaAsignada.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnBorrarAlumnoActionPerformed
@@ -191,18 +207,23 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_spnRutaAsignadaActionPerformed
 
+    private void txtCorreoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoAlumnoActionPerformed
+
     public void refrescarTabla(){
         while(modelo.getRowCount()>0){
             modelo.removeRow(0);
         }
         
         for (Alumno alumno : listaAlumnos) {
-            Object a[]=new Object[5];
+            Object a[]=new Object[6];
             a[0]=alumno.getNombre();
             a[1]=alumno.getId();
             a[2]=alumno.getDireccion();
             a[3]=alumno.getTelefono();
-            a[4]=alumno.getRutaAsignada();
+            a[4]=alumno.getCorreo();
+            a[5]=alumno.getRutaAsignada();
             modelo.addRow(a);
         }
         
@@ -228,9 +249,11 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> spnRutaAsignada;
     private javax.swing.JTable tblRegistroAlumnos;
+    private javax.swing.JTextField txtCorreoAlumno;
     private javax.swing.JTextField txtDireccionAlumno;
     private javax.swing.JTextField txtIDAlumno;
     private javax.swing.JTextField txtNombreAlumno;
