@@ -3,18 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-
 import Clases.Piloto;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
+
 public class RegistroPilotos extends javax.swing.JFrame {
-    DefaultTableModel modelo=new DefaultTableModel();
-    ArrayList<Piloto> listaPilotos=new ArrayList<Piloto>();
+     DefaultTableModel modelo = new DefaultTableModel();
+    ArrayList<Piloto> listaPilotos = new ArrayList<>();
+    private final String archivoPilotos = "Pilotos";
+    
     public RegistroPilotos() {
         initComponents();
-        
         this.setTitle("REGISTRO DE PILOTOS");
         this.setSize(700, 700);
         this.setLocationRelativeTo(null);
@@ -23,7 +26,28 @@ public class RegistroPilotos extends javax.swing.JFrame {
         modelo.addColumn("TELEFONO");
         modelo.addColumn("RUTA ASIGNADA");
         modelo.addColumn("BUS ASIGNADO");
+
+        // Cargar pilotos desde el archivo al iniciar
+        cargarDesdeArchivo();
         refrescarTabla();
+    }
+    
+     private void guardarEnArchivo() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoPilotos))) {
+            oos.writeObject(listaPilotos);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar en archivo: " + e.getMessage());
+        }
+    }
+
+    private void cargarDesdeArchivo() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoPilotos))) {
+            listaPilotos = (ArrayList<Piloto>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado, se creará uno nuevo al guardar.");
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar desde archivo: " + e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -169,36 +193,53 @@ public class RegistroPilotos extends javax.swing.JFrame {
     }//GEN-LAST:event_spnBusAsignadoActionPerformed
 
     private void btnAgregarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPilotoActionPerformed
-        try {
+         try {
+        Piloto x = new Piloto();
+        x.setNombre(txtNombrePiloto.getText());
+        x.setId(txtIDPiloto.getText());
+        x.setTelefono(txtTelefonoPiloto.getText());
+        x.setRutaAsignada(spnRutaAsignada.getSelectedIndex());
+        x.setBusAsignado(spnBusAsignado.getSelectedIndex());
+        listaPilotos.add(x);
 
-            Piloto x=new Piloto();
-            x.setNombre(txtNombrePiloto.getText());
-            x.setId(txtIDPiloto.getText());
-            x.setTelefono(txtTelefonoPiloto.getText());
-           // x.setRutaAsignada(Integer.parseInt(spnRutaAsignada.getSelectedItem().toString()));
-            x.setRutaAsignada(spnRutaAsignada.getSelectedIndex());
-            //listaPilotos.add(x);
-           // x.setBusAsignado(Integer.parseInt(spnBusAsignado.getSelectedItem().toString()));
-           x.setBusAsignado(spnBusAsignado.getSelectedIndex()); 
-           listaPilotos.add(x);
-            refrescarTabla();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(this,"ERROR AL AGREGAR PILOTO");
-        }
-    }//GEN-LAST:event_btnAgregarPilotoActionPerformed
+        // Guardar cambios en el archivo
+        guardarEnArchivo();
+        refrescarTabla();
 
-    private void btnBorrarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPilotoActionPerformed
+        // Limpiar campos de texto después de agregar
         txtNombrePiloto.setText("");
         txtIDPiloto.setText("");
         txtTelefonoPiloto.setText("");
         spnRutaAsignada.setSelectedIndex(0);
         spnBusAsignado.setSelectedIndex(0);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "ERROR AL AGREGAR PILOTO");
+    }
+    }//GEN-LAST:event_btnAgregarPilotoActionPerformed
+
+    private void btnBorrarPilotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPilotoActionPerformed
+         int filaSeleccionada = tblRegistroPiloto.getSelectedRow();
+
+        if (filaSeleccionada >= 0) {
+            // Confirmar la eliminación
+            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este piloto?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                // Eliminar el piloto de la lista
+                listaPilotos.remove(filaSeleccionada);
+
+                // Guardar cambios en el archivo
+                guardarEnArchivo();
+                refrescarTabla();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona un piloto para eliminar.");
+        }
 
     }//GEN-LAST:event_btnBorrarPilotoActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
 
-        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
+       MenuPrincipal objMenuPrincipal = new MenuPrincipal();
         this.setVisible(false);
         objMenuPrincipal.setVisible(true);
 
@@ -209,31 +250,25 @@ public class RegistroPilotos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoPilotoActionPerformed
 
     public void refrescarTabla() {
-        while(modelo.getRowCount()>0){
-            modelo.removeRow(0);
-        }
-        
+       modelo.setRowCount(0); // Limpiar tabla
         for (Piloto piloto : listaPilotos) {
-            Object a[]=new Object[5];
-            a[0]=piloto.getNombre();
-            a[1]=piloto.getId();
-            a[2]=piloto.getTelefono();
-            a[3]=piloto.getRutaAsignada();
-            a[4]=piloto.getBusAsignado();
-            modelo.addRow(a);
+            Object[] fila = { piloto.getNombre(), piloto.getId(), piloto.getTelefono(), piloto.getRutaAsignada(), piloto.getBusAsignado() };
+            modelo.addRow(fila);
         }
-        
         tblRegistroPiloto.setModel(modelo);
     }
     
+   
+    
     public static void main(String args[]) {
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
+         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegistroPilotos().setVisible(true);
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPiloto;

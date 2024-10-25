@@ -5,14 +5,16 @@
 package Vista;
 
 import Clases.Alumno;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroAlumnos extends javax.swing.JFrame {
 
-    DefaultTableModel modelo=new DefaultTableModel();
-    ArrayList<Alumno> listaAlumnos=new ArrayList<Alumno>();
+       DefaultTableModel modelo = new DefaultTableModel();
+    ArrayList<Alumno> listaAlumnos = new ArrayList<>();
+    
     public RegistroAlumnos() {
         initComponents();
        
@@ -25,6 +27,8 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         modelo.addColumn("TELEFONO");
         modelo.addColumn("CORREO");
         modelo.addColumn("RUTA");
+      
+                cargarAlumnos(); // Cargar los datos al iniciar la aplicación
         refrescarTabla();
     }
 
@@ -169,9 +173,9 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionAlumnoActionPerformed
 
     private void btnAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlumnoActionPerformed
-        try {
-        
-        Alumno x=new Alumno();
+       
+         try {
+        Alumno x = new Alumno();
         x.setNombre(txtNombreAlumno.getText());
         x.setId(txtIDAlumno.getText());
         x.setDireccion(txtDireccionAlumno.getText());
@@ -179,27 +183,41 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         x.setCorreo(txtCorreoAlumno.getText());
         x.setRutaAsignada(Integer.parseInt(spnRutaAsignada.getSelectedItem().toString()));
         listaAlumnos.add(x);
+        guardarAlumnos();
         refrescarTabla();
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(this,"ERROR AL AGREGAR ALUMNO");
-        }
-    }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
-
-    private void btnBorrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlumnoActionPerformed
+        
+        // Limpiar los campos de texto después de agregar
         txtNombreAlumno.setText("");
         txtIDAlumno.setText("");
         txtDireccionAlumno.setText("");
         txtTelefonoAlumno.setText("");
         txtCorreoAlumno.setText("");
-        spnRutaAsignada.setSelectedIndex(0);
+        spnRutaAsignada.setSelectedIndex(0); // Opcional: resetear la selección del combo
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "ERROR AL AGREGAR ALUMNO");
+    }
+    }//GEN-LAST:event_btnAgregarAlumnoActionPerformed
+
+    private void btnBorrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlumnoActionPerformed
+       int filaSeleccionada = tblRegistroAlumnos.getSelectedRow();
+    
+    if (filaSeleccionada >= 0) {
+        // Eliminar el alumno de la lista
+        listaAlumnos.remove(filaSeleccionada);
+        guardarAlumnos(); // Guardar la lista actualizada en el archivo
+        refrescarTabla(); // Actualizar la tabla
+        JOptionPane.showMessageDialog(this, "Alumno eliminado correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Seleccione un alumno para eliminar.");
+    }
         
     }//GEN-LAST:event_btnBorrarAlumnoActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
     
-        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
-        this.setVisible(false);
-        objMenuPrincipal.setVisible(true);
+      MenuPrincipal objMenuPrincipal = new MenuPrincipal();
+        objMenuPrincipal.setVisible(true); // Muestra el menú principal
+        this.dispose();
         
     }//GEN-LAST:event_btnRegresarActionPerformed
 
@@ -212,7 +230,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoAlumnoActionPerformed
 
     public void refrescarTabla(){
-        while(modelo.getRowCount()>0){
+        while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         
@@ -228,6 +246,23 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         }
         
         tblRegistroAlumnos.setModel(modelo);
+    }
+    
+       private void guardarAlumnos() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Alumnos.dat"))) {
+            out.writeObject(listaAlumnos);
+            JOptionPane.showMessageDialog(this, "Alumnos guardados correctamente.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar los alumnos: " + e.getMessage());
+        }
+    }
+
+    private void cargarAlumnos() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Alumnos.dat"))) {
+            listaAlumnos = (ArrayList<Alumno>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "No se pudo cargar el archivo de alumnos.");
+        }
     }
     
     

@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Clases;
+import java.io.Serializable;
 
-public class Piloto {
+public class Piloto implements Serializable {
+      private static final long serialVersionUID = 1L;
     String nombre;
     String id;
     String telefono;

@@ -1,15 +1,15 @@
 
 package Clases;
-
+import java.io.Serializable;
 import javax.swing.JComboBox;
 
-public class Alumno {
-    String nombre;
-    String id;
-    String direccion;
-    String telefono;
-    String correo;
-    int rutaAsignada;
+public class Alumno implements Serializable{
+   private String nombre;
+    private String id;
+    private String direccion;
+    private String telefono;
+    private String correo;
+    private int rutaAsignada;
 
     public Alumno() {
     }

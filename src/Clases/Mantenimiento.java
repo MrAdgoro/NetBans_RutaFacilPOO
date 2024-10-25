@@ -1,9 +1,12 @@
 package Clases;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Mantenimiento {
+public class Mantenimiento implements Serializable {
+    
+     private static final long serialVersionUID = 1L; // Agregar un serialVersionUID
     private String id;
     private String modeloBus;
     private LocalDate fechaProgramada;
