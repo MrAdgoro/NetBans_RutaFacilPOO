@@ -10,14 +10,14 @@ public class Piloto implements Serializable {
     String nombre;
     String id;
     String telefono;
-    int busAsignado;
+    String busAsignado;
     int rutaAsignada;
 
     public Piloto () {
         
     }
     
-    public Piloto(String nombre, String id, String telefono, int busAsignado, int rutaAsignada) {
+    public Piloto(String nombre, String id, String telefono, String busAsignado, int rutaAsignada) {
         this.nombre = nombre;
         this.id = id;
         this.telefono = telefono;
@@ -49,11 +49,11 @@ public class Piloto implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getBusAsignado() {
+    public String getBusAsignado() {
         return busAsignado;
     }
 
-    public void setBusAsignado(int busAsignado) {
+    public void setBusAsignado(String busAsignado) {
         this.busAsignado = busAsignado;
     }
 

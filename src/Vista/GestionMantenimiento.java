@@ -4,7 +4,12 @@
  */
 
 package Vista;
-
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 import Clases.Mantenimiento;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,28 +23,33 @@ import java.util.List;
 
 public class GestionMantenimiento extends javax.swing.JFrame {
     
-    DefaultTableModel modelo=new DefaultTableModel();
-    ArrayList<Mantenimiento> mantenimientos=new ArrayList<Mantenimiento>();
+  
+    DefaultTableModel modelo = new DefaultTableModel();
+    ArrayList<Mantenimiento> mantenimientos = new ArrayList<>();
+    private final String nombreArchivo = "Mantenimiento";
     
     public GestionMantenimiento() {
-        initComponents();
+       initComponents();
         this.setTitle("GESTION DE MANTENIMIENTO DE");
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
-        
+
         modelo.addColumn("ID");
         modelo.addColumn("MODELO");
         modelo.addColumn("FECHA");
         modelo.addColumn("MANTENIMIENTO");
         modelo.addColumn("DETALLES");
         modelo.addColumn("COSTO");
-        
+
         tblGestionMantenimiento.setModel(modelo);
-        
+
+        // Ocultar campos de detalles y costo inicialmente
         jLabel7.setVisible(false);
         txtDetallesTrabajo.setVisible(false);
         jLabel2.setVisible(false);
         txtCosto.setVisible(false);
+
+        cargarDatos();
     }
     
         
@@ -297,13 +307,13 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaProgramadaActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        MenuPrincipal objMenuPrincipal = new MenuPrincipal();
-        this.setVisible(false);
-        objMenuPrincipal.setVisible(true);
+       this.setVisible(false); // Oculta la ventana actual (GestionMantenimiento)
+    new MenuPrincipal().setVisible(true); // Muestra el menú principal
+    this.dispose(); 
     }//GEN-LAST:event_btnRegresarActionPerformed
 
         private void agregarMantenimiento() {
-        try {
+       try {
             String id = txtId.getText();
             String modeloBus = txtModeloBus.getText();
             LocalDate fechaProgramada = LocalDate.parse(txtFechaProgramada.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -315,9 +325,10 @@ public class GestionMantenimiento extends javax.swing.JFrame {
             mantenimientos.add(mantenimiento);
 
             actualizarTabla();
-            
+            guardarDatos(); // Guardar después de agregar
+
             limpiarCampos();
-            
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al agregar mantenimiento: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -325,8 +336,8 @@ public class GestionMantenimiento extends javax.swing.JFrame {
 
     private void actualizarTabla() {
         modelo.setRowCount(0);
-        
-        for(Mantenimiento m : mantenimientos){
+
+        for (Mantenimiento m : mantenimientos) {
             modelo.addRow(new Object[]{
                 m.getId(),
                 m.getModeloBus(),
@@ -339,12 +350,32 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     }
 
     private void limpiarCampos() {
-        txtId.setText("");
+       txtId.setText("");
         txtModeloBus.setText("");
         txtFechaProgramada.setText("");
-        jcbxTipoMantenimiento.setSelectedItem(0);
+        jcbxTipoMantenimiento.setSelectedIndex(0);
         txtDetallesTrabajo.setText("");
         txtCosto.setText("");
+    }
+    
+     private void guardarDatos() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
+            oos.writeObject(mantenimientos);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al guardar datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Método para cargar los datos de mantenimiento desde un archivo binario
+    private void cargarDatos() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
+            mantenimientos = (ArrayList<Mantenimiento>) ois.readObject();
+            actualizarTabla();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo no encontrado. Se creará uno nuevo al guardar.");
+        } catch (IOException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 

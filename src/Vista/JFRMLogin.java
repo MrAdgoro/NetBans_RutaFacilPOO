@@ -129,7 +129,7 @@ public class JFRMLogin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 330, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 330, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

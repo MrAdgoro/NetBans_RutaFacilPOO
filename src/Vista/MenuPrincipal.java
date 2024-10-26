@@ -111,17 +111,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        JFRMLogin objJFRMLogin = new JFRMLogin();
-        this.setVisible(false);
-        objJFRMLogin.setVisible(true);
-         int confirm = JOptionPane.showConfirmDialog(null, "�Est�s seguro de que deseas cerrar sesi�n?", "Confirmar cierre de sesi�n", JOptionPane.YES_NO_OPTION);
-    
-   
+        int confirm = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas cerrar sesión?", "Confirmar cierre de sesión", JOptionPane.YES_NO_OPTION);
+
     if (confirm == JOptionPane.YES_OPTION) {
-        JOptionPane.showMessageDialog(null, "Sesi�n cerrada exitosamente.");
-        this.setVisible(false); // Ocultar la ventana actual (MenuPrincipal)
-        JFRMLogin login = new JFRMLogin(); // Crear una nueva instancia de la ventana de login
-        login.setVisible(true); // Mostrar la ventana de login
+        JOptionPane.showMessageDialog(null, "Sesión cerrada exitosamente.");
+        this.dispose(); // Cierra la ventana actual (MenuPrincipal) y libera los recursos
+        JFRMLogin login = new JFRMLogin(); // Crea una única instancia de la ventana de login
+        login.setVisible(true); // Muestra la ventana de login
     }
      
     }//GEN-LAST:event_btnLogoutActionPerformed

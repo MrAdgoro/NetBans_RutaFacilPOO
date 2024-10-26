@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import Clases.Bus;
+import Clases.Flotilla;
 import Clases.Piloto;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +32,18 @@ public class RegistroPilotos extends javax.swing.JFrame {
 
         // Cargar pilotos desde el archivo al iniciar
         cargarDesdeArchivo();
+        cargarBuses();
         refrescarTabla();
+    }
+    private void cargarBuses(){
+        Flotilla objFlotilla = new Flotilla();
+        List<Bus> lstBuses = objFlotilla.ListarBuses();
+        spnBusAsignado.removeAllItems(); // Limpiamos cualquier elemento previo
+        // Iteramos sobre la lista y añadimos los elementos al comboBox
+        for (Bus objBus : lstBuses) {
+            // Añade el nombre o cualquier otro atributo del objeto como texto en el comboBox
+            spnBusAsignado.addItem(objBus.getStrPlaca()); // Ajusta esto según el atributo que desees mostrar
+        }
     }
     
      private void guardarEnArchivo() {
@@ -199,7 +213,7 @@ public class RegistroPilotos extends javax.swing.JFrame {
         x.setId(txtIDPiloto.getText());
         x.setTelefono(txtTelefonoPiloto.getText());
         x.setRutaAsignada(spnRutaAsignada.getSelectedIndex());
-        x.setBusAsignado(spnBusAsignado.getSelectedIndex());
+        x.setBusAsignado(spnBusAsignado.getSelectedItem().toString());
         listaPilotos.add(x);
 
         // Guardar cambios en el archivo

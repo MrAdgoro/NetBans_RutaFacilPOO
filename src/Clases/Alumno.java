@@ -10,17 +10,25 @@ public class Alumno implements Serializable{
     private String telefono;
     private String correo;
     private int rutaAsignada;
+    private String strBus;
 
     public Alumno() {
     }
 
-    public Alumno(String nombre, String id, String direccion, String telefono, int rutaAsignada) {
+    public Alumno(String nombre, String id, String direccion, String telefono, int rutaAsignada,String strBus) {
         this.nombre = nombre;
         this.id = id;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correo = correo;
         this.rutaAsignada = rutaAsignada;
+        this.strBus=strBus;
+    }
+    public String getStrBus(){
+        return strBus;
+    }
+    public void setStrBus(String strBus){
+        this.strBus=strBus;
     }
 
     public String getNombre() {
