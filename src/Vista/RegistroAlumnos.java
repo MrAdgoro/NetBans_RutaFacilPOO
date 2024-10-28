@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 
 import Clases.Alumno;
@@ -11,7 +8,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.*;
+import javax.swing.text.*;
 import javax.swing.table.DefaultTableModel;
+
 
 public class RegistroAlumnos extends javax.swing.JFrame {
 
@@ -20,9 +22,8 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     
     public RegistroAlumnos() {
         initComponents();
-       
+        
         this.setTitle("REGISTRO DE ALUMNOS");
-        this.setSize(700, 700);
         this.setLocationRelativeTo(null);
         modelo.addColumn("NOMBRE");
         modelo.addColumn("ID");
@@ -31,11 +32,35 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         modelo.addColumn("CORREO");
         modelo.addColumn("RUTA");
         modelo.addColumn("BUS");
-        cargarAlumnos(); // Cargar los datos al iniciar la aplicación
+        cargarAlumnos();
         cargarBuses();
         cargarBusqueda();
         refrescarTabla();
+        
+        setCharacterLimit(txtIDAlumno, 13);
+        setCharacterLimit(txtTelefonoAlumno, 8);
     }
+    
+    private void setCharacterLimit(JTextField textField, int limit) {
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) { checkLength(e); }
+            public void removeUpdate(DocumentEvent e) { checkLength(e); }
+            public void changedUpdate(DocumentEvent e) { checkLength(e); }
+
+            private void checkLength(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    if (e.getDocument().getLength() > limit) {
+                        try {
+                            e.getDocument().remove(limit, e.getDocument().getLength() - limit);
+                        } catch (BadLocationException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
+    
     private void cargarBuses(){
         Flotilla objFlotilla = new Flotilla();
         List<Bus> lstBuses = objFlotilla.ListarBuses();
@@ -48,6 +73,8 @@ public class RegistroAlumnos extends javax.swing.JFrame {
             spnBus.addItem(objBus.getStrPlaca()); // Ajusta esto según el atributo que desees mostrar
         }
     }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,6 +103,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         btnBuscarAlumnos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblBusquedaAlumnos = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,49 +121,55 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblRegistroAlumnos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 570, 200));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 570, 200));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Direccion");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Telefono");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Bus:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
         txtNombreAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombreAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 200, -1));
+        getContentPane().add(txtNombreAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 200, -1));
 
         txtIDAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtIDAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 200, -1));
+        getContentPane().add(txtIDAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, -1));
 
         txtDireccionAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDireccionAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 200, -1));
-        getContentPane().add(txtTelefonoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 200, -1));
+        getContentPane().add(txtDireccionAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 200, -1));
+
+        txtTelefonoAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoAlumnoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtTelefonoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 200, -1));
 
         spnRutaAsignada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         spnRutaAsignada.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +177,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 spnRutaAsignadaActionPerformed(evt);
             }
         });
-        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 270, -1));
+        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 270, -1));
 
         btnAgregarAlumno.setText("Agregar");
         btnAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +185,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 btnAgregarAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
+        getContentPane().add(btnAgregarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
 
         btnBorrarAlumno.setText("Borrar");
         btnBorrarAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +193,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 btnBorrarAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBorrarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+        getContentPane().add(btnBorrarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, -1, -1));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,22 +201,22 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 640, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Correo");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         txtCorreoAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoAlumnoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCorreoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 200, -1));
+        getContentPane().add(txtCorreoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Ruta Asignada");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         spnBusAsignado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Bus 1", "Bus 2", "Bus 3", "Bus 4", "Bus 5" }));
         spnBusAsignado.addActionListener(new java.awt.event.ActionListener() {
@@ -190,11 +224,11 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 spnBusAsignadoActionPerformed(evt);
             }
         });
-        getContentPane().add(spnBusAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 270, -1));
+        getContentPane().add(spnBusAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 270, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Bus:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
         spnBus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Bus 1", "Bus 2", "Bus 3", "Bus 4", "Bus 5" }));
         spnBus.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +236,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 spnBusActionPerformed(evt);
             }
         });
-        getContentPane().add(spnBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 270, -1));
+        getContentPane().add(spnBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 270, -1));
 
         btnBuscarAlumnos.setText("Buscar");
         btnBuscarAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +244,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
                 btnBuscarAlumnosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscarAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, -1, -1));
+        getContentPane().add(btnBuscarAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 400, -1, -1));
 
         tblBusquedaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,7 +259,11 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblBusquedaAlumnos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 570, 200));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 570, 200));
+
+        jLabel9.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
+        jLabel9.setText("Registro de Alumnos");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,7 +273,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreAlumnoActionPerformed
 
     private void txtIDAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDAlumnoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtIDAlumnoActionPerformed
 
     private void txtDireccionAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionAlumnoActionPerformed
@@ -257,13 +295,12 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         guardarAlumnos();
         refrescarTabla();
         
-        // Limpiar los campos de texto después de agregar
         txtNombreAlumno.setText("");
         txtIDAlumno.setText("");
         txtDireccionAlumno.setText("");
         txtTelefonoAlumno.setText("");
         txtCorreoAlumno.setText("");
-        spnRutaAsignada.setSelectedIndex(0); // Opcional: resetear la selección del combo
+        spnRutaAsignada.setSelectedIndex(0); 
         spnBusAsignado.setSelectedIndex(0);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "ERROR AL AGREGAR ALUMNO");
@@ -298,7 +335,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_spnRutaAsignadaActionPerformed
 
     private void txtCorreoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoAlumnoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtCorreoAlumnoActionPerformed
 
     private void spnBusAsignadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spnBusAsignadoActionPerformed
@@ -312,6 +349,11 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     private void btnBuscarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAlumnosActionPerformed
         cargarBusqueda();
     }//GEN-LAST:event_btnBuscarAlumnosActionPerformed
+
+    private void txtTelefonoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoAlumnoActionPerformed
+   
     private void cargarBusqueda(){
         // TODO add your handling code here:
         DefaultTableModel modeloBusqueda = new DefaultTableModel();
@@ -375,7 +417,6 @@ public class RegistroAlumnos extends javax.swing.JFrame {
         }
     }
     
-    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -398,6 +439,7 @@ public class RegistroAlumnos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> spnBus;

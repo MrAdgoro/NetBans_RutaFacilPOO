@@ -31,7 +31,6 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     public GestionMantenimiento() {
        initComponents();
         this.setTitle("GESTION DE MANTENIMIENTO DE");
-        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
 
         modelo.addColumn("ID");
@@ -59,7 +58,6 @@ public class GestionMantenimiento extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -77,6 +75,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         jcbxTipoMantenimiento = new javax.swing.JComboBox<>();
         txtFechaProgramada = new javax.swing.JTextField();
         btnRegresar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,54 +93,50 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("GESTION DE MANTENIMIENTO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 200, 20));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Costo:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 40, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 40, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("ID:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Modelo:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Fecha (\"dd/mm/yyyy\"):");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Mantenimiento:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Detalles:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         txtCosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCostoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 130, -1));
+        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 130, -1));
 
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
-        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 130, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
 
         txtModeloBus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModeloBusActionPerformed(evt);
             }
         });
-        getContentPane().add(txtModeloBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
+        getContentPane().add(txtModeloBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 130, -1));
 
         txtDetallesTrabajo.setAutoscrolls(false);
         txtDetallesTrabajo.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +144,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 txtDetallesTrabajoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDetallesTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 130, -1));
+        getContentPane().add(txtDetallesTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 130, -1));
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +152,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +160,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         tblGestionMantenimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,7 +176,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         tblGestionMantenimiento.setDragEnabled(true);
         jScrollPane2.setViewportView(tblGestionMantenimiento);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 240));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 240));
 
         jcbxTipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Frenos", "Aceite", "Mantenimiento general", "Otro..." }));
         jcbxTipoMantenimiento.addItemListener(new java.awt.event.ItemListener() {
@@ -199,14 +194,14 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 jcbxTipoMantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbxTipoMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 160, 20));
+        getContentPane().add(jcbxTipoMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 130, 20));
 
         txtFechaProgramada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaProgramadaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFechaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 130, -1));
+        getContentPane().add(txtFechaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 130, -1));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +209,11 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
+        jLabel8.setText("Gestion de mantenimiento");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,14 +229,6 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     private void txtDetallesTrabajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDetallesTrabajoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDetallesTrabajoActionPerformed
-
-    private void txtModeloBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloBusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtModeloBusActionPerformed
-
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
         // TODO add your handling code here:
@@ -312,11 +303,19 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     this.dispose(); 
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtModeloBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloBusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtModeloBusActionPerformed
+
         private void agregarMantenimiento() {
        try {
             String id = txtId.getText();
             String modeloBus = txtModeloBus.getText();
-            LocalDate fechaProgramada = LocalDate.parse(txtFechaProgramada.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate fechaProgramada = LocalDate.parse(txtFechaProgramada.getText(), DateTimeFormatter.ofPattern("dd/mm/yyyy"));
             String tipoMantenimiento = jcbxTipoMantenimiento.getSelectedItem().toString();
             String detallesTrabajo = txtDetallesTrabajo.getText();
             double costo = Double.parseDouble(txtCosto.getText());
@@ -350,7 +349,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     }
 
     private void limpiarCampos() {
-       txtId.setText("");
+        txtId.setText("");
         txtModeloBus.setText("");
         txtFechaProgramada.setText("");
         jcbxTipoMantenimiento.setSelectedIndex(0);
@@ -392,13 +391,13 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

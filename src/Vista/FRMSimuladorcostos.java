@@ -24,6 +24,7 @@ public class FRMSimuladorcostos extends javax.swing.JFrame {
      */
     public FRMSimuladorcostos() {
         initComponents();
+        this.setLocationRelativeTo(null);
          model = new DefaultTableModel();
         tblTabla.setModel(model);
         model.addColumn("Descripcion");

@@ -3,13 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Clases. Mantenimiento;
-import Clases.Alumno;
-import Vista.GestionMantenimiento;
-import Vista.RegistroAlumnos;
-import Vista.RegistroBuses;
 import javax.swing.JOptionPane;
-import java.awt.event.ActionEvent;
 
 
 
@@ -23,6 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -45,11 +40,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnEnvioCorreo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTituloLogin.setFont(new java.awt.Font("Rockwell Condensed", 2, 24)); // NOI18N
+        lblTituloLogin.setFont(new java.awt.Font("Rockwell Condensed", 2, 26)); // NOI18N
         lblTituloLogin.setText("Ruta Facil");
-        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 90, -1));
+        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 100, -1));
 
         btnRegistroBuses.setText("Registro de Buses");
         btnRegistroBuses.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +69,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnLogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
+        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
         btnGestionMantenimiento.setText("Gestion Mantenimiento");
         btnGestionMantenimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +77,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnGestionMantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
+        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 160, -1));
 
         btnSimuladorCostos.setText("Simulador de Costos");
         btnSimuladorCostos.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +85,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnSimuladorCostosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, -1));
+        getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 160, -1));
 
         btnRegistroPilotos.setText("Registro de Pilotos");
         btnRegistroPilotos.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +93,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroPilotosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroPilotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 160, -1));
+        getContentPane().add(btnRegistroPilotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
 
         btnEnvioCorreo.setText("Envio Notificaciones");
         btnEnvioCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +101,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnEnvioCorreoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, -1));
+        getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
