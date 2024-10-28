@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Clases. Mantenimiento;
+import Clases.Mantenimiento;
 import Clases.Alumno;
 import Vista.GestionMantenimiento;
+
 import Vista.RegistroAlumnos;
 import Vista.RegistroBuses;
 import javax.swing.JOptionPane;
