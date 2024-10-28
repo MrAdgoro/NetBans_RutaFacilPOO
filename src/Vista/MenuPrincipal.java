@@ -44,6 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnSimuladorCostos = new javax.swing.JButton();
         btnRegistroPilotos = new javax.swing.JButton();
         btnEnvioCorreo = new javax.swing.JButton();
+        btnFeedbackPil = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,6 +109,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 160, -1));
 
+        btnFeedbackPil.setText("Feedback Pilotos");
+        btnFeedbackPil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeedbackPilActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFeedbackPil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 160, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,6 +169,13 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
         objEnvioCorreo.setVisible(true);
     }//GEN-LAST:event_btnEnvioCorreoActionPerformed
 
+    private void btnFeedbackPilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackPilActionPerformed
+        // TODO add your handling code here:
+        Reportefeedback objReportefeedback=new Reportefeedback();
+        this.setVisible(false);
+        objReportefeedback.setVisible(true);
+    }//GEN-LAST:event_btnFeedbackPilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +213,7 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnvioCorreo;
+    private javax.swing.JButton btnFeedbackPil;
     private javax.swing.JButton btnGestionMantenimiento;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegistroAlumnos;

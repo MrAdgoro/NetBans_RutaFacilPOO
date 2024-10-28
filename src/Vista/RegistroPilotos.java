@@ -34,6 +34,7 @@ public class RegistroPilotos extends javax.swing.JFrame {
         cargarDesdeArchivo();
         cargarBuses();
         refrescarTabla();
+        
     }
     private void cargarBuses(){
         Flotilla objFlotilla = new Flotilla();
