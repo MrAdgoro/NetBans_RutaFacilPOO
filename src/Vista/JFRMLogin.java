@@ -29,6 +29,7 @@ public class JFRMLogin extends javax.swing.JFrame {
      */
     public JFRMLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         objSeguridad = new Seguridad();
         rootPane.setDefaultButton(btnIngresar);
     }
@@ -57,7 +58,7 @@ public class JFRMLogin extends javax.swing.JFrame {
 
         lblTituloLogin.setFont(new java.awt.Font("Rockwell Condensed", 2, 24)); // NOI18N
         lblTituloLogin.setText("RutaFacil");
-        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 80, -1));
+        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 80, -1));
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
 
@@ -129,7 +130,7 @@ public class JFRMLogin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 330, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 330, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

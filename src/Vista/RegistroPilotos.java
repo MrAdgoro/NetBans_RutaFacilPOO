@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
 import Clases.Bus;
 import Clases.Flotilla;
@@ -10,7 +7,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.BadLocationException;
 
 
 
@@ -22,7 +24,6 @@ public class RegistroPilotos extends javax.swing.JFrame {
     public RegistroPilotos() {
         initComponents();
         this.setTitle("REGISTRO DE PILOTOS");
-        this.setSize(700, 700);
         this.setLocationRelativeTo(null);
         modelo.addColumn("NOMBRE");
         modelo.addColumn("ID");
@@ -30,12 +31,37 @@ public class RegistroPilotos extends javax.swing.JFrame {
         modelo.addColumn("RUTA ASIGNADA");
         modelo.addColumn("BUS ASIGNADO");
 
-        // Cargar pilotos desde el archivo al iniciar
         cargarDesdeArchivo();
         cargarBuses();
         refrescarTabla();
+<<<<<<< HEAD
         
+=======
+        setCharacterLimit(txtIDPiloto, 13);
+        setCharacterLimit(txtTelefonoPiloto, 8);
+>>>>>>> 8b0b1f1ac8a7e317fde63b8bc97a20f95fe086f0
     }
+    
+     private void setCharacterLimit(JTextField textField, int limit) {
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) { checkLength(e); }
+            public void removeUpdate(DocumentEvent e) { checkLength(e); }
+            public void changedUpdate(DocumentEvent e) { checkLength(e); }
+
+            private void checkLength(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    if (e.getDocument().getLength() > limit) {
+                        try {
+                            e.getDocument().remove(limit, e.getDocument().getLength() - limit);
+                        } catch (BadLocationException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
+     
     private void cargarBuses(){
         Flotilla objFlotilla = new Flotilla();
         List<Bus> lstBuses = objFlotilla.ListarBuses();
@@ -64,12 +90,13 @@ public class RegistroPilotos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar desde archivo: " + e.getMessage());
         }
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombrePiloto = new javax.swing.JTextField();
@@ -85,12 +112,10 @@ public class RegistroPilotos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRegistroPiloto = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Registro Pilotos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
@@ -187,6 +212,10 @@ public class RegistroPilotos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, -1, 20));
+
+        jLabel7.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
+        jLabel7.setText("Registro Pilotos");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,12 +318,12 @@ public class RegistroPilotos extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPiloto;
     private javax.swing.JButton btnBorrarPiloto;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> spnBusAsignado;
     private javax.swing.JComboBox<String> spnRutaAsignada;
@@ -303,4 +332,8 @@ public class RegistroPilotos extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombrePiloto;
     private javax.swing.JTextField txtTelefonoPiloto;
     // End of variables declaration//GEN-END:variables
+
+    private void setCharacterLimit(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
