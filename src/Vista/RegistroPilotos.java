@@ -30,10 +30,17 @@ public class RegistroPilotos extends javax.swing.JFrame {
         modelo.addColumn("TELEFONO");
         modelo.addColumn("RUTA ASIGNADA");
         modelo.addColumn("BUS ASIGNADO");
+        getContentPane().setBackground(new java.awt.Color(102, 102, 102));
+        setSize(680, 500); // Establece el tamaño fijo de la ventana
+        setResizable(false); // Evita que el usuario cambie el tamaño
 
         cargarDesdeArchivo();
         cargarBuses();
         refrescarTabla();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 608f94393de76739d52dec1f1f856bb16b5124ca
         setCharacterLimit(txtIDPiloto, 13);
         setCharacterLimit(txtTelefonoPiloto, 8);
 
@@ -114,42 +121,45 @@ public class RegistroPilotos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel3.setText("ID");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
+        txtNombrePiloto.setBackground(new java.awt.Color(204, 204, 204));
         txtNombrePiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombrePilotoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNombrePiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 200, -1));
+        getContentPane().add(txtNombrePiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 200, -1));
 
+        txtIDPiloto.setBackground(new java.awt.Color(204, 204, 204));
         txtIDPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDPilotoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtIDPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 200, -1));
+        getContentPane().add(txtIDPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 200, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel4.setText("Telefono");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
+        txtTelefonoPiloto.setBackground(new java.awt.Color(204, 204, 204));
         txtTelefonoPiloto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoPilotoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTelefonoPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 200, -1));
+        getContentPane().add(txtTelefonoPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 200, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel5.setText("Ruta Asignada");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
         spnRutaAsignada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "1", "2", "3", "4", "5" }));
         spnRutaAsignada.addActionListener(new java.awt.event.ActionListener() {
@@ -157,11 +167,11 @@ public class RegistroPilotos extends javax.swing.JFrame {
                 spnRutaAsignadaActionPerformed(evt);
             }
         });
-        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 120, -1));
+        getContentPane().add(spnRutaAsignada, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 120, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel6.setText("Bus Asignado");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 110, -1));
 
         spnBusAsignado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Bus 1", "Bus 2", "Bus 3", "Bus 4", "Bus 5" }));
         spnBusAsignado.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +179,7 @@ public class RegistroPilotos extends javax.swing.JFrame {
                 spnBusAsignadoActionPerformed(evt);
             }
         });
-        getContentPane().add(spnBusAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 120, -1));
+        getContentPane().add(spnBusAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 120, -1));
 
         btnAgregarPiloto.setText("Agregar");
         btnAgregarPiloto.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +197,7 @@ public class RegistroPilotos extends javax.swing.JFrame {
         });
         getContentPane().add(btnBorrarPiloto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
+        tblRegistroPiloto.setBackground(new java.awt.Color(204, 204, 204));
         tblRegistroPiloto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -208,11 +219,11 @@ public class RegistroPilotos extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, -1, 20));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, 20));
 
-        jLabel7.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel7.setText("Registro Pilotos");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -19,6 +19,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         this.setLocationRelativeTo(null);
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(102, 102, 102));
+        setSize(400, 270); // Establece el tamaño fijo de la ventana
+        setResizable(false); // Evita que el usuario cambie el tamaño
     }
 
     /**
@@ -45,9 +48,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTituloLogin.setFont(new java.awt.Font("Rockwell Condensed", 2, 26)); // NOI18N
+        lblTituloLogin.setFont(new java.awt.Font("Segoe UI Black", 0, 26)); // NOI18N
         lblTituloLogin.setText("Ruta Facil");
-        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 100, -1));
+        getContentPane().add(lblTituloLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 130, -1));
 
         btnRegistroBuses.setText("Registro de Buses");
         btnRegistroBuses.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroBusesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroBuses, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
+        getContentPane().add(btnRegistroBuses, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 160, -1));
 
         btnRegistroAlumnos.setText("Registro de Alumnos");
         btnRegistroAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -63,15 +66,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroAlumnosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 160, -1));
+        getContentPane().add(btnRegistroAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, -1));
 
-        btnLogout.setText("Log Out");
+        btnLogout.setText("Cerrar Sesion");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
+=======
+        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, -1, -1));
+>>>>>>> 608f94393de76739d52dec1f1f856bb16b5124ca
 
         btnGestionMantenimiento.setText("Gestion Mantenimiento");
         btnGestionMantenimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +86,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnGestionMantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 160, -1));
+        getContentPane().add(btnGestionMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 160, -1));
 
         btnSimuladorCostos.setText("Simulador de Costos");
         btnSimuladorCostos.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +94,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnSimuladorCostosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 160, -1));
+        getContentPane().add(btnSimuladorCostos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 160, -1));
 
         btnRegistroPilotos.setText("Registro de Pilotos");
         btnRegistroPilotos.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnRegistroPilotosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistroPilotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 160, -1));
+        getContentPane().add(btnRegistroPilotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 160, -1));
 
         btnEnvioCorreo.setText("Envio Notificaciones");
         btnEnvioCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -103,15 +110,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnEnvioCorreoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 160, -1));
+        getContentPane().add(btnEnvioCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 160, -1));
 
-        btnFeedbackPil.setText("Feedback Pilotos");
+        btnFeedbackPil.setText("Reporte de Pilotos");
         btnFeedbackPil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFeedbackPilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFeedbackPil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 160, -1));
+        getContentPane().add(btnFeedbackPil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 160, -1));
 
         btnFeedback.setText("Reporte Feedback");
         btnFeedback.addActionListener(new java.awt.event.ActionListener() {
@@ -174,12 +181,16 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btnEnvioCorreoActionPerformed
 
     private void btnFeedbackPilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackPilActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
       
     }//GEN-LAST:event_btnFeedbackPilActionPerformed
 
     private void btnFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackActionPerformed
         // TODO add your handling code here:
+=======
+        
+>>>>>>> 608f94393de76739d52dec1f1f856bb16b5124ca
         Reportefeedback objReportefeedback=new Reportefeedback();
         this.setVisible(false);
         objReportefeedback.setVisible(true);
