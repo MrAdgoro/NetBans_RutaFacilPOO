@@ -39,6 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnRegistroPilotos = new javax.swing.JButton();
         btnEnvioCorreo = new javax.swing.JButton();
         btnFeedbackPil = new javax.swing.JButton();
+        btnFeedback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -70,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnLogoutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
 
         btnGestionMantenimiento.setText("Gestion Mantenimiento");
         btnGestionMantenimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +112,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFeedbackPil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 160, -1));
+
+        btnFeedback.setText("Reporte Feedback");
+        btnFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeedbackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFeedback, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,10 +175,15 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
 
     private void btnFeedbackPilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackPilActionPerformed
         // TODO add your handling code here:
+      
+    }//GEN-LAST:event_btnFeedbackPilActionPerformed
+
+    private void btnFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeedbackActionPerformed
+        // TODO add your handling code here:
         Reportefeedback objReportefeedback=new Reportefeedback();
         this.setVisible(false);
         objReportefeedback.setVisible(true);
-    }//GEN-LAST:event_btnFeedbackPilActionPerformed
+    }//GEN-LAST:event_btnFeedbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +222,7 @@ objFRMSimuladorcostos.setVisible(true);// TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnvioCorreo;
+    private javax.swing.JButton btnFeedback;
     private javax.swing.JButton btnFeedbackPil;
     private javax.swing.JButton btnGestionMantenimiento;
     private javax.swing.JButton btnLogout;

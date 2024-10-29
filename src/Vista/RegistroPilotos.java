@@ -34,12 +34,9 @@ public class RegistroPilotos extends javax.swing.JFrame {
         cargarDesdeArchivo();
         cargarBuses();
         refrescarTabla();
-<<<<<<< HEAD
-        
-=======
         setCharacterLimit(txtIDPiloto, 13);
         setCharacterLimit(txtTelefonoPiloto, 8);
->>>>>>> 8b0b1f1ac8a7e317fde63b8bc97a20f95fe086f0
+
     }
     
      private void setCharacterLimit(JTextField textField, int limit) {

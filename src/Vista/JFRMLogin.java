@@ -159,6 +159,12 @@ public class JFRMLogin extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        limpiarCampos();
+    // Opcional: Mostrar mensaje de confirmación
+    JOptionPane.showMessageDialog(this, 
+        "Campos limpiados exitosamente", 
+        "Información", 
+        JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -195,6 +201,13 @@ public class JFRMLogin extends javax.swing.JFrame {
             }
         });
     }
+    private void limpiarCampos() {
+    txtUsuario.setText("");
+    txtPassword.setText("");
+    // Opcional: Devolver el foco al campo de usuario
+    txtUsuario.requestFocus();
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

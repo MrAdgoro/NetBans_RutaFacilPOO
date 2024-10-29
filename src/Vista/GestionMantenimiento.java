@@ -219,7 +219,38 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        int filaSeleccionada = tblGestionMantenimiento.getSelectedRow();
+    if (filaSeleccionada >= 0) {
+        // Preguntar al usuario si está seguro de eliminar el registro
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+            "¿Está seguro de eliminar este registro de mantenimiento?",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION);
+            
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            // Eliminar de la lista de mantenimientos
+            mantenimientos.remove(filaSeleccionada);
+            
+            // Actualizar la tabla y el archivo
+            actualizarTabla();
+            guardarDatos();
+            
+            // Limpiar los campos
+            limpiarCampos();
+            
+            JOptionPane.showMessageDialog(this,
+                "Registro eliminado exitosamente",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+    } else {
+        // Si no hay fila seleccionada, solo limpiar los campos
         limpiarCampos();
+        JOptionPane.showMessageDialog(this,
+            "Por favor, seleccione un registro para eliminar",
+            "Aviso",
+            JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -313,24 +344,53 @@ public class GestionMantenimiento extends javax.swing.JFrame {
 
         private void agregarMantenimiento() {
        try {
-            String id = txtId.getText();
-            String modeloBus = txtModeloBus.getText();
-            LocalDate fechaProgramada = LocalDate.parse(txtFechaProgramada.getText(), DateTimeFormatter.ofPattern("dd/mm/yyyy"));
-            String tipoMantenimiento = jcbxTipoMantenimiento.getSelectedItem().toString();
-            String detallesTrabajo = txtDetallesTrabajo.getText();
-            double costo = Double.parseDouble(txtCosto.getText());
-
-            Mantenimiento mantenimiento = new Mantenimiento(id, modeloBus, fechaProgramada, tipoMantenimiento, detallesTrabajo, costo);
-            mantenimientos.add(mantenimiento);
-
-            actualizarTabla();
-            guardarDatos(); // Guardar después de agregar
-
-            limpiarCampos();
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al agregar mantenimiento: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        // Validar que los campos no estén vacíos
+        if (txtId.getText().trim().isEmpty() || 
+            txtModeloBus.getText().trim().isEmpty() || 
+            txtFechaProgramada.getText().trim().isEmpty() || 
+            jcbxTipoMantenimiento.getSelectedIndex() == 0) {
+            throw new Exception("Todos los campos son obligatorios");
         }
+
+        String id = txtId.getText();
+        String modeloBus = txtModeloBus.getText();
+        
+        // Corregir el formato de fecha usando MM para meses en lugar de mm
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaProgramada;
+        try {
+            fechaProgramada = LocalDate.parse(txtFechaProgramada.getText(), formatter);
+        } catch (Exception e) {
+            throw new Exception("Formato de fecha inválido. Use dd/MM/yyyy (ejemplo: 25/12/2024)");
+        }
+
+        String tipoMantenimiento = jcbxTipoMantenimiento.getSelectedItem().toString();
+        String detallesTrabajo = txtDetallesTrabajo.getText();
+        
+        // Validar el costo
+        double costo;
+        try {
+            costo = Double.parseDouble(txtCosto.getText());
+            if (costo < 0) {
+                throw new Exception("El costo no puede ser negativo");
+            }
+        } catch (NumberFormatException e) {
+            throw new Exception("El costo debe ser un número válido");
+        }
+
+        Mantenimiento mantenimiento = new Mantenimiento(id, modeloBus, fechaProgramada, 
+                                                      tipoMantenimiento, detallesTrabajo, costo);
+        mantenimientos.add(mantenimiento);
+
+        actualizarTabla();
+        guardarDatos();
+        limpiarCampos();
+        JOptionPane.showMessageDialog(this, "Mantenimiento agregado exitosamente");
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al agregar mantenimiento: " + ex.getMessage(), 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }
 
     private void actualizarTabla() {
@@ -349,12 +409,14 @@ public class GestionMantenimiento extends javax.swing.JFrame {
     }
 
     private void limpiarCampos() {
-        txtId.setText("");
-        txtModeloBus.setText("");
-        txtFechaProgramada.setText("");
-        jcbxTipoMantenimiento.setSelectedIndex(0);
-        txtDetallesTrabajo.setText("");
-        txtCosto.setText("");
+       txtId.setText("");
+    txtModeloBus.setText("");
+    txtFechaProgramada.setText("");
+    jcbxTipoMantenimiento.setSelectedIndex(0);
+    txtDetallesTrabajo.setText("");
+    txtCosto.setText("");
+    // Deseleccionar la fila de la tabla
+    tblGestionMantenimiento.clearSelection();
     }
     
      private void guardarDatos() {
@@ -376,6 +438,38 @@ public class GestionMantenimiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cargar datos: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private void cargarDatosEnCampos(int fila) {
+    if (fila >= 0 && fila < mantenimientos.size()) {
+        Mantenimiento m = mantenimientos.get(fila);
+        txtId.setText(m.getId());
+        txtModeloBus.setText(m.getModeloBus());
+        txtFechaProgramada.setText(m.getFechaProgramada().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+        // Establecer el tipo de mantenimiento en el ComboBox
+        String tipoMantenimiento = m.getTipoMantenimiento();
+        for (int i = 0; i < jcbxTipoMantenimiento.getItemCount(); i++) {
+            if (jcbxTipoMantenimiento.getItemAt(i).equals(tipoMantenimiento)) {
+                jcbxTipoMantenimiento.setSelectedIndex(i);
+                break;
+            }
+        }
+        
+        txtDetallesTrabajo.setText(m.getDetallesTrabajo());
+        txtCosto.setText(String.valueOf(m.getCosto()));
+    }
+}
+
+// Añadir un MouseListener a la tabla para cargar los datos al hacer clic
+// Agregar este código en el constructor después de inicializar la tabla
+private void initTableListener() {
+    tblGestionMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            int filaSeleccionada = tblGestionMantenimiento.getSelectedRow();
+            cargarDatosEnCampos(filaSeleccionada);
+        }
+    });
+}
 
 
     public static void main(String args[]) {

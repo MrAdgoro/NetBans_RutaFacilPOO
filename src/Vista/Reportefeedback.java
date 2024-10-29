@@ -28,16 +28,16 @@ public class Reportefeedback extends javax.swing.JFrame {
 
     
 private void cargarPilotos() {
-        CboxPilotos.removeAllItems();
-        cargarDesdeArchivo(); // Cargar la lista de pilotos desde el archivo
+       CboxPilotos.removeAllItems();
+        cargarDesdeArchivo();
 
         for (Piloto piloto : listaPilotos) {
-            CboxPilotos.addItem(piloto.getNombre()); // Agregar el nombre del piloto al JComboBox
+            CboxPilotos.addItem(piloto.getNombre());
         }
     }
 
     private void cargarDesdeArchivo() {
-        String archivoPilotos = "Pilotos"; // Nombre del archivo donde se guardan los pilotos
+         String archivoPilotos = "Pilotos";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoPilotos))) {
             listaPilotos = (ArrayList<Piloto>) ois.readObject();
         } catch (FileNotFoundException e) {
@@ -57,13 +57,14 @@ private void cargarPilotos() {
         }
     }
 private void guardarObservaciones() {
-        String archivoObservaciones = "observaciones"; // Nombre del archivo donde se guardan las observaciones
+         String archivoObservaciones = "observaciones";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivoObservaciones))) {
             oos.writeObject(listaObservaciones);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error al guardar observaciones: " + e.getMessage());
         }
     }
+  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,13 +100,13 @@ private void guardarObservaciones() {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Pilotos", "Observaciones"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -195,77 +196,100 @@ private void guardarObservaciones() {
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         // TODO add your handling code here:
         String pilotoSeleccionado = (String) CboxPilotos.getSelectedItem();
-        String observacion = txtObservaciones.getText();
-
+        String observacion = txtObservaciones.getText().trim();
         if (pilotoSeleccionado != null && !observacion.isEmpty()) {
             Observacion nuevaObservacion = new Observacion(pilotoSeleccionado, observacion);
             listaObservaciones.add(nuevaObservacion);
-            guardarObservaciones(); // Guardar las observaciones en el archivo
-            refrescarTabla(); // Refrescar la tabla para mostrar la nueva observación
-            txtObservaciones.setText(""); // Limpiar el campo de texto
-        }
-        else {
+            guardarObservaciones();
+            refrescarTabla();
+            txtObservaciones.setText("");
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor selecciona un piloto y escribe una observación.");
         }
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-          int selectedRow = jTable1.getSelectedRow();
+        int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1) {
-            listaObservaciones.remove(selectedRow); // Eliminar la observación seleccionada
-            guardarObservaciones(); // Guardar los cambios en el archivo
-            refrescarTabla(); // Refrescar la tabla
+            listaObservaciones.remove(selectedRow);
+            guardarObservaciones();
+            refrescarTabla();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor selecciona una observación para borrar.");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
  private void refrescarTabla() {
         // Limpiar la tabla antes de agregar nuevas filas
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Limpiar las filas existentes
+         javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
 
-        // Agregar las observaciones a la tabla
+        if (listaObservaciones == null || listaObservaciones.isEmpty()) {
+            return;
+        }
+
         for (Observacion observacion : listaObservaciones) {
-            model.addRow(new Object[]{observacion.getPilotoNombre(), observacion.getObservacion()});
+            model.addRow(new Object[]{
+                observacion.getPilotoNombre(),
+                observacion.getObservacion()
+            });
+        }
+
+        javax.swing.table.TableColumnModel columnModel = jTable1.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(1).setPreferredWidth(300);
+
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+                java.awt.Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (c instanceof javax.swing.JLabel) {
+                    javax.swing.JLabel label = (javax.swing.JLabel) c;
+                    label.setVerticalAlignment(javax.swing.JLabel.TOP);
+                }
+                return c;
+            }
+        });
+
+        for (int row = 0; row < jTable1.getRowCount(); row++) {
+            int rowHeight = 25;
+            String observacionText = (String) model.getValueAt(row, 1);
+            if (observacionText != null && !observacionText.isEmpty()) {
+                java.awt.FontMetrics fm = jTable1.getFontMetrics(jTable1.getFont());
+                int textWidth = columnModel.getColumn(1).getWidth();
+                if (textWidth > 0) {
+                    int lines = (fm.stringWidth(observacionText) / textWidth) + 1;
+                    rowHeight = Math.max(rowHeight, lines * fm.getHeight());
+                }
+            }
+            jTable1.setRowHeight(row, rowHeight);
         }
     }
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
+         MenuPrincipal objMenuPrincipal = new MenuPrincipal();
+        this.setVisible(false);
+        objMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
+         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reportefeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reportefeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reportefeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Reportefeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Reportefeedback().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Reportefeedback().setVisible(true);
         });
     }
 
