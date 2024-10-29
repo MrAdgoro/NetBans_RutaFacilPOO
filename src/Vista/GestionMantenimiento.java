@@ -32,6 +32,9 @@ public class GestionMantenimiento extends javax.swing.JFrame {
        initComponents();
         this.setTitle("GESTION DE MANTENIMIENTO DE");
         this.setLocationRelativeTo(null);
+        getContentPane().setBackground(new java.awt.Color(102, 102, 102));
+        setSize(510, 570); // Establece el tamaño fijo de la ventana
+        setResizable(false); // Evita que el usuario cambie el tamaño
 
         modelo.addColumn("ID");
         modelo.addColumn("MODELO");
@@ -93,58 +96,66 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel2.setText("Costo:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 40, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 50, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("ID:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel3.setText("Placa:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel4.setText("Modelo:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel5.setText("Fecha (\"dd/mm/yyyy\"):");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel6.setText("Mantenimiento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel7.setText("Detalles:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
+        txtCosto.setBackground(new java.awt.Color(204, 204, 204));
+        txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtCosto.setSelectionColor(new java.awt.Color(0, 0, 0));
         txtCosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCostoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 130, -1));
+        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 130, -1));
 
+        txtId.setBackground(new java.awt.Color(204, 204, 204));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
-        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 130, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 130, -1));
 
+        txtModeloBus.setBackground(new java.awt.Color(204, 204, 204));
         txtModeloBus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModeloBusActionPerformed(evt);
             }
         });
-        getContentPane().add(txtModeloBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 130, -1));
+        getContentPane().add(txtModeloBus, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 130, -1));
 
+        txtDetallesTrabajo.setBackground(new java.awt.Color(204, 204, 204));
         txtDetallesTrabajo.setAutoscrolls(false);
+        txtDetallesTrabajo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtDetallesTrabajo.setSelectionColor(new java.awt.Color(0, 0, 0));
         txtDetallesTrabajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDetallesTrabajoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDetallesTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 130, -1));
+        getContentPane().add(txtDetallesTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 130, -1));
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +173,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
         });
         getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
+        tblGestionMantenimiento.setBackground(new java.awt.Color(204, 204, 204));
         tblGestionMantenimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -178,6 +190,7 @@ public class GestionMantenimiento extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 240));
 
+        jcbxTipoMantenimiento.setBackground(new java.awt.Color(204, 204, 204));
         jcbxTipoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Frenos", "Aceite", "Mantenimiento general", "Otro..." }));
         jcbxTipoMantenimiento.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -194,14 +207,15 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 jcbxTipoMantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(jcbxTipoMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 130, 20));
+        getContentPane().add(jcbxTipoMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 130, 20));
 
+        txtFechaProgramada.setBackground(new java.awt.Color(204, 204, 204));
         txtFechaProgramada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaProgramadaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFechaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 130, -1));
+        getContentPane().add(txtFechaProgramada, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 130, -1));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,11 +223,11 @@ public class GestionMantenimiento extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 100, -1));
 
-        jLabel8.setFont(new java.awt.Font("Sitka Heading", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel8.setText("Gestion de mantenimiento");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
